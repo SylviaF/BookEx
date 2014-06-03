@@ -57,9 +57,11 @@ nav {
     height: 100px;
     display: block;
     background-color: #f7f3f3;
+    border-bottom: 1px solid #e5ebe4;
 }
 
-menu {
+menu
+{
     padding: 0;
     display: block;
     width: 100%;
@@ -69,20 +71,20 @@ menu {
     background-color: #f7f3f3;
 }
 
-    menu li {
-        float: left;
-        width: 150px;
-        text-align: center;
-        line-height: 40px;
-        color: #614e3c;
-        font-family: Helvetica, Arial, sans-serif;
-        font-size: 13px;
-    }
+menu li {
+    float: left;
+    width: 150px;
+    text-align: center;
+    line-height: 40px;
+    color: #614e3c;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
 
 article li {
     width: 210px;
     height: 250px;
-    float:left;
+    float: left;
 }
 
 article .info {
@@ -91,13 +93,21 @@ article .info {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    display:block;
-    text-align:center;
+    display: block;
+    text-align: center;
 }
+
 .cover {
-    text-align:center;
+    text-align: center;
 }
-.cover img {
-    width:150px;
-    height: 210px;
+
+    .cover img {
+        width: 150px;
+        height: 210px;
+    }
+
+.container {
+    width: 1050px;
+    margin: auto;
+    padding: 20px;
 }
