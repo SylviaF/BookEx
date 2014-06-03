@@ -2,6 +2,13 @@ body {
     margin: 0;
 }
 
+ul {
+    list-style: none;
+    margin: auto;
+    width: 1050px;
+    padding-left: 0;
+}
+
 nav {
     height: 28px;
     color: #d5d5d5;
@@ -62,12 +69,6 @@ menu {
     background-color: #f7f3f3;
 }
 
-    menu ul {
-        list-style: none;
-        margin: auto;
-        width: 1050px;
-    }
-
     menu li {
         float: left;
         width: 150px;
@@ -77,3 +78,26 @@ menu {
         font-family: Helvetica, Arial, sans-serif;
         font-size: 13px;
     }
+
+article li {
+    width: 210px;
+    height: 250px;
+    float:left;
+}
+
+article .info {
+    padding-left: 30px;
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display:block;
+    text-align:center;
+}
+.cover {
+    text-align:center;
+}
+.cover img {
+    width:150px;
+    height: 210px;
+}
