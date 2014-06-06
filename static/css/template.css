@@ -1,6 +1,10 @@
 body {
     margin: 0;
 }
+a {
+    text-decoration: none;
+    color: #d5d5d5;
+}
 
 ul {
     list-style: none;
@@ -47,9 +51,16 @@ nav {
 
 #search_input {
     float: right;
-    width: 350px;
+    width: 322px;
     height: 28px;
-    background: #fff url(../img/search.png) no-repeat right center content-box;
+    
+}
+#search_btn {
+    border:1px solid #808080;
+    float: right;
+    width:28px;
+    height:28px;
+    background: #fff url(../img/search.png) no-repeat center content-box;
 }
 
 #search_container {
@@ -111,3 +122,15 @@ article .info {
     margin: auto;
     padding: 20px;
 }
+.floatRight {
+    float:right;
+    color: #614e3c;
+}
+.greenBtn{
+padding: 10px 15px;
+background-color: #3ba354;
+color: #fff;
+width: 100px;
+height: 60px;
+border-radius: 10px;
+]
