@@ -24,7 +24,7 @@ function search(type, hint) {
                         $("#result").html("");
                         for (book in books) {
 
-                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\"\" target=\"_blank\" title=\"" + books[book].book_name + "\">" +
+                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\"book?book_id=" + books[book].book_name + "\" target=\"_blank\" title=\"" + books[book].book_name + "\">" +
                             "<img src=\"\" alt=\"" + books[book].book_name + "\"></a>" +
                     "</div><div class=\"bookInfo\"><p class=\"bookName\">书名：" + books[book].book_name + "</p>" +
                             "<p class=\"author\">作者：" + books[book].author + "</p><p class=\"bookType\">类别：" + books[book].genre + "</p>" +
