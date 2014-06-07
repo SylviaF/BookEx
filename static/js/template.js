@@ -13,8 +13,8 @@
             console.log(data[0]);
             for (book in data) {
 
-                $bookItem = "<li><div class=\"cover\"><a href=\"book?book_id="+data[book].book_name+"\" target=\"_blank\" title=\"" + data[book].book_name +
-                            "\"><img src=\"" + data[book].image_url + "\" alt=\"" + data[book].book_name +
+                $bookItem = "<li><div class=\"cover\"><a href=\'book?book_id="+addQuote(data[book].book_name)+"\' target=\"_blank\" title=\"" + data[book].book_name +
+                            "\"><img src=\"static/img/2.jpg\" alt=\"" + data[book].book_name +
                         "\"></a></div><a class=\"info\">" + data[book].book_name + "</a></li>";
 
                 $("#books").append($bookItem);
@@ -29,7 +29,7 @@
                 $.ajax({
                     dataType: "json",
                     url: "api/v1/books",
-                    data: { "genre": "教材教辅" },
+                    data: { "genre": "\"教材教辅\"" },
                     success: function (data) {
                         console.log(data);
                         var book = {};
@@ -38,8 +38,8 @@
                         console.log(data[0]);
                         for (book in data) {
 
-                            $bookItem = "<li><div class=\"cover\"><a href=\"book?book_id="+data[book].book_name+"\" target=\"_blank\" title=\"" + data[book].book_name +
-                                        "\"><img src=\"" + data[book].image_url + "\" alt=\"" + data[book].book_name +
+                            $bookItem = "<li><div class=\"cover\"><a href=\'book?book_id="+addQuote(data[book].book_name)+"\' target=\"_blank\" title=\"" + data[book].book_name +
+                                        "\"><img src=\"static/img/2.jpg\" alt=\"" + data[book].book_name +
                                     "\"></a></div><a class=\"info\">" + data[book].book_name + "</a></li>";
 
                             $("#books").append($bookItem);
@@ -51,7 +51,7 @@
                 $.ajax({
                     dataType: "json",
                     url: "api/v1/books",
-                    data: { "genre": "少儿" },
+                    data: { "genre": "\"少儿\"" },
                     success: function (data) {
                         console.log(data);
                         var book = {};
@@ -60,8 +60,8 @@
                         console.log(data[0]);
                         for (book in data) {
 
-                            $bookItem = "<li><div class=\"cover\"><a href=\"book?book_id="+data[book].book_name+"\" target=\"_blank\" title=\"" + data[book].book_name +
-                                        "\"><img src=\"" + data[book].image_url + "\" alt=\"" + data[book].book_name +
+                            $bookItem = "<li><div class=\"cover\"><a href=\'book?book_id="+addQuote(data[book].book_name)+"\' target=\"_blank\" title=\"" + data[book].book_name +
+                                        "\"><img src=\"../img/2.ipg\" alt=\"" + data[book].book_name +
                                     "\"></a></div><a class=\"info\">" + data[book].book_name + "</a></li>";
 
                             $("#books").append($bookItem);
@@ -73,7 +73,7 @@
                 $.ajax({
                     dataType: "json",
                     url: "api/v1/books",
-                    data: { "genre": "文学艺术" },
+                    data: { "genre": "\"文学艺术\"" },
                     success: function (data) {
                         console.log(data);
                         var book = {};
@@ -82,8 +82,8 @@
                         console.log(data[0]);
                         for (book in data) {
 
-                            $bookItem = "<li><div class=\"cover\"><a href=\"book?book_id="+data[book].book_name+"\" target=\"_blank\" title=\"" + data[book].book_name +
-                                        "\"><img src=\"" + data[book].image_url + "\" alt=\"" + data[book].book_name +
+                            $bookItem = "<li><div class=\"cover\"><a href=\'book?book_id="+addQuote(data[book].book_name)+"\' target=\"_blank\" title=\"" + data[book].book_name +
+                                        "\"><img src=\"static/img/2.jpg\" alt=\"" + data[book].book_name +
                                     "\"></a></div><a class=\"info\">" + data[book].book_name + "</a></li>";
 
                             $("#books").append($bookItem);
@@ -95,7 +95,7 @@
                 $.ajax({
                     dataType: "json",
                     url: "api/v1/books",
-                    data: { "genre": "人文社科" },
+                    data: { "genre": "\"人文社科\"" },
                     success: function (data) {
                         console.log(data);
                         var book = {};
@@ -104,8 +104,8 @@
                         console.log(data[0]);
                         for (book in data) {
 
-                            $bookItem = "<li><div class=\"cover\"><a href=\"book?book_id="+data[book].book_name+"\" target=\"_blank\" title=\"" + data[book].book_name +
-                                        "\"><img src=\"" + data[book].image_url + "\" alt=\"" + data[book].book_name +
+                            $bookItem = "<li><div class=\"cover\"><a href=\'book?book_id="+addQuote(data[book].book_name)+"\' target=\"_blank\" title=\"" + data[book].book_name +
+                                        "\"><img src=\"static/img/2.jpg\" alt=\"" + data[book].book_name +
                                     "\"></a></div><a class=\"info\">" + data[book].book_name + "</a></li>";
 
                             $("#books").append($bookItem);
@@ -117,7 +117,7 @@
                 $.ajax({
                     dataType: "json",
                     url: "api/v1/books",
-                    data: { "genre": "经济管理" },
+                    data: { "genre": "\"经济管理\"" },
                     success: function (data) {
                         console.log(data);
                         var book = {};
@@ -126,8 +126,8 @@
                         console.log(data[0]);
                         for (book in data) {
 
-                            $bookItem = "<li><div class=\"cover\"><a href=\"book?book_id="+data[book].book_name+"\" target=\"_blank\" title=\"" + data[book].book_name +
-                                        "\"><img src=\"" + data[book].image_url + "\" alt=\"" + data[book].book_name +
+                            $bookItem = "<li><div class=\"cover\"><a href=\'book?book_id="+addQuote(data[book].book_name)+"\' target=\"_blank\" title=\"" + data[book].book_name +
+                                        "\"><img src=\"static/img/2.jpg\" alt=\"" + data[book].book_name +
                                     "\"></a></div><a class=\"info\">" + data[book].book_name + "</a></li>";
 
                             $("#books").append($bookItem);
@@ -139,7 +139,7 @@
                 $.ajax({
                     dataType: "json",
                     url: "api/v1/books",
-                    data: { "genre": "励志与成功" },
+                    data: { "genre": "\"励志与成功\"" },
                     success: function (data) {
                         console.log(data);
                         var book = {};
@@ -148,8 +148,8 @@
                         console.log(data[0]);
                         for (book in data) {
 
-                            $bookItem = "<li><div class=\"cover\"><a href=\"book?book_id="+data[book].book_name+"\" target=\"_blank\" title=\"" + data[book].book_name +
-                                        "\"><img src=\"" + data[book].image_url + "\" alt=\"" + data[book].book_name +
+                            $bookItem = "<li><div class=\"cover\"><a href=\'book?book_id="+addQuote(data[book].book_name)+"\' target=\"_blank\" title=\"" + data[book].book_name +
+                                        "\"><img src=\"static/img/2.jpg\" alt=\"" + data[book].book_name +
                                     "\"></a></div><a class=\"info\">" + data[book].book_name + "</a></li>";
 
                             $("#books").append($bookItem);
@@ -160,8 +160,8 @@
             case 6:
                 $.ajax({
                     dataType: "json",
-                    url: "v1/books",
-                    data: { "genre": "科技" },
+                    url: "api/v1/books",
+                    data: { "genre": "\"科技\"" },
                     success: function (data) {
                         console.log(data);
                         var book = {};
@@ -170,8 +170,8 @@
                         console.log(data[0]);
                         for (book in data) {
 
-                            $bookItem = "<li><div class=\"cover\"><a href=\"book?book_id="+data[book].book_name+"\" target=\"_blank\" title=\"" + data[book].book_name +
-                                        "\"><img src=\"" + data[book].image_url + "\" alt=\"" + data[book].book_name +
+                            $bookItem = "<li><div class=\"cover\"><a href=\'book?book_id="+addQuote(data[book].book_name)+"\' target=\"_blank\" title=\"" + data[book].book_name +
+                                        "\"><img src=\"static/img/2.jpg\" alt=\"" + data[book].book_name +
                                     "\"></a></div><a class=\"info\">" + data[book].book_name + "</a></li>";
 
                             $("#books").append($bookItem);

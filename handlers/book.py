@@ -1,4 +1,4 @@
-#coding:utf-8
+#coding:utf8
 
 import tornado.web
 import torndb
@@ -14,7 +14,7 @@ class BookHandler(tornado.web.RequestHandler):
 		for key in book_fields:
 			search[key] = self.get_argument(key, None)
 			if search[key] != None:
-				search[key] = search[key].encode("utf-8")
+				search[key] = search[key].encode('utf-8')
 			else: 
 				search.pop(key)
 
@@ -25,10 +25,11 @@ class BookHandler(tornado.web.RequestHandler):
 		first = True
 		for key in search.keys():
 			if not first:
-				condition += ' AND b.%s LIKE \'%s\'' % (key, search[key])
+				condition += ' AND b.%s = \'%s\'' % (key, search[key])
 			else:
 				first = False
-				condition += 'b.%s LIKE \'%s\'' % (key, search[key])
+				condition += 'b.%s = \'%r\'' % (key, search[key])
+				# condition += 'b.book_name = 你好'
 
 		if condition != "":
 			q_sentence = "SELECT * FROM Book b WHERE " + condition
@@ -48,20 +49,22 @@ class AddBookHandler(tornado.web.RequestHandler):
 	# 暂时没有考虑book_name重复的情况应该怎么通知用户/修改数据库
 	def post(self, book_name=None):
 
-		book_name = self.get_argument('book_name', None)
-		author = self.get_argument('author', None)
-		genre = self.get_argument('genre', None)
-		summary = self.get_argument('summary', None)
-		user_id = self.get_argument('user_id', None)
+		book_name = self.get_argument('book_name', None).encode('utf-8')
+		author = self.get_argument('author', None).encode('utf-8')
+		genre = self.get_argument('genre', None).encode('utf-8')
+		summary = self.get_argument('summary', None).encode('utf-8')
+		user_id = self.get_argument('user_id', None).encode('utf-8')
 
 		# 1. Insert into the Book Table
 		tup = (book_name, author, genre, summary)
 		sql_sent = 'INSERT INTO Book VALUES' + str(tup)
+		print "###############" + sql_sent
 		self.application.db.execute(sql_sent)
 
 		# 2. Insert into the BorrowBook Table
 		tup2 = (user_id, book_name, 'available', 0)
 		sql_sent2 = 'INSERT INTO BorrowBook VALUES' + str(tup2)
+		print "###############" + sql_sent2
 		self.application.db.execute(sql_sent2)
 
 		self.write(json.dumps(tup))

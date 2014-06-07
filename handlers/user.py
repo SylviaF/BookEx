@@ -81,12 +81,12 @@ class RegisterHandler(tornado.web.RequestHandler):
 
 	def post(self, user_id=None):
 		#userRegisteFields = ['user_id', 'password', 'confirm_password', 'email', 'address']
-		user_id = self.get_argument("user_id", None).encode('utf-8')
+		user_id = self.get_argument("user_id", None)
 		user_name = user_id
-		password = self.get_argument('password', None).encode('utf-8')
-		confirm_password = self.get_argument('confirm_password', None).encode('utf-8')
-		email = self.get_argument('email', None).encode('utf-8')
-		address = self.get_argument('address', None).encode('utf-8')
+		password = self.get_argument('password', None)
+		confirm_password = self.get_argument('confirm_password', None)
+		email = self.get_argument('email', None)
+		address = self.get_argument('address', None)
 		
 		#userDict = self.application.db.user
 		userInfo = dict()

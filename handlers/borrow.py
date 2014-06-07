@@ -33,7 +33,7 @@ class BorrowBookHandler(tornado.web.RequestHandler):
 	def post(self):
 		owner_id = self.get_argument('owner_id').encode('utf-8')
 		book_name = self.get_argument('book_name').encode('utf-8')
-		borrower_id = self.get_argument('borrower_id', None).encode('utf-8')
+		borrower_id = self.get_argument('borrower_id', None)
 
 		# 1. update the state of the BorrowBook Table
 		sql_changestate = 'UPDATE BorrowBook SET state = \'borrowed\' WHERE owner_id = \'' + owner_id + '\' AND book_name = \'' + book_name + '\''

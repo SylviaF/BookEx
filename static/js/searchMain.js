@@ -1,9 +1,9 @@
 $(function () {
     type = $.getUrlParam("type");
     hint = $.getUrlParam("hint").toString();
-
     $("#search_input").val(hint);
-    books = search(type, hint);
+
+    search(type, hint);
 
     console.log(type + hint);
     var radio = $("input[type='radio'][name='type']");
@@ -18,7 +18,6 @@ $(function () {
             $("#radio1").removeAttr("checked");
             $("#radio0").removeAttr("checked");
             $("#radio2").attr("checked", true);
-            alert(1);
             break;
         case "genre":
             

@@ -6,6 +6,13 @@
     }
 })(jQuery);
 
+function addQuote(str) {
+    return "\"" + str + "\"";
+}
+function addQuote1(str) {
+    return "\"" + str + "\"";
+}
+
 function search(type, hint) {
     var books = [];
     switch (type) {
@@ -13,19 +20,19 @@ function search(type, hint) {
             $.ajax({
                 dataType: "json",
                 url: "api/v1/books",
-                data: { book_name: hint },
+                data: { book_name: addQuote(hint) },
                 success: function (data) {
                     books = data;
                     console.log(data);
-                    if (books == []) {
-                        location.href = "/notfound";
+                    if (books.length === 0) {
+                        location.href = "/notfound?hint=" + encodeURIComponent(hint) + "&type=" + type;
                     }
                     else {
                         $("#result").html("");
                         for (book in books) {
 
-                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\"book?book_id=" + books[book].book_name + "\" target=\"_blank\" title=\"" + books[book].book_name + "\">" +
-                            "<img src=\"\" alt=\"" + books[book].book_name + "\"></a>" +
+                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\'book?book_id=" + addQuote1(books[book].book_name) + "\' target=\"_blank\" title=\"" + books[book].book_name + "\">" +
+                            "<img src=\"static/img/2.jpg\" alt=\"" + books[book].book_name + "\"></a>" +
                     "</div><div class=\"bookInfo\"><p class=\"bookName\">书名：" + books[book].book_name + "</p>" +
                             "<p class=\"author\">作者：" + books[book].author + "</p><p class=\"bookType\">类别：" + books[book].genre + "</p>" +
                             "<p class=\"bookNum\">x人提供此书</p></div><div class=\"clear\"></div></div>";
@@ -35,7 +42,7 @@ function search(type, hint) {
                     }
                 },
                 error: function () {
-                    location.href = "/notfound?" + type + "=" + hint;
+                    location.href = "/notfound?hint=" + encodeURIComponent(hint) + "&type=" + type;
                 }
             });
 
@@ -44,19 +51,19 @@ function search(type, hint) {
             $.ajax({
                 dataType: "json",
                 url: "api/v1/books",
-                data: { author: hint },
+                data: { author: addQuote(hint) },
                 success: function (data) {
                     books = data;
                     console.log(data);
-                    if (books == []) {
-                        location.href = "/notfound";
+                    if (books.length === 0) {
+                        location.href = "/notfound?hint=" + encodeURIComponent(hint) + "&type=" + type;
                     }
                     else {
                         $("#result").html("");
                         for (book in books) {
 
-                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\"\" target=\"_blank\" title=\"" + books[book].book_name + "\">" +
-                            "<img src=\"\" alt=\"" + books[book].book_name + "\"></a>" +
+                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\'book?book_id=" + addQuote1(books[book].book_name) + "\' target=\"_blank\" title=\"" + books[book].book_name + "\">" +
+                            "<img src=\"static/img/2.jpg\" alt=\"" + books[book].book_name + "\"></a>" +
                     "</div><div class=\"bookInfo\"><p class=\"bookName\">书名：" + books[book].book_name + "</p>" +
                             "<p class=\"author\">作者：" + books[book].author + "</p><p class=\"bookType\">类别：" + books[book].genre + "</p>" +
                             "<p class=\"bookNum\">x人提供此书</p></div><div class=\"clear\"></div></div>";
@@ -66,7 +73,7 @@ function search(type, hint) {
                     }
                 },
                 error: function () {
-                    location.href = "/notfound?" + type + "=" + hint;
+                    location.href = "/notfound?hint=" + encodeURIComponent(hint) + "&type=" + type;
                 }
             });
 
@@ -75,19 +82,19 @@ function search(type, hint) {
             $.ajax({
                 dataType: "json",
                 url: "api/v1/books",
-                data: { genre: hint },
+                data: { genre: addQuote(hint) },
                 success: function (data) {
                     books = data;
-                    console.log(data);
-                    if (books == []) {
-                        location.href = "/notfound";
+                    console.log(books);
+                    if (books.length === 0) {
+                        location.href = "/notfound?hint=" + encodeURIComponent(hint) + "&type=" + type;
                     }
                     else {
                         $("#result").html("");
                         for (book in books) {
 
-                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\"\" target=\"_blank\" title=\"" + books[book].book_name + "\">" +
-                            "<img src=\"\" alt=\"" + books[book].book_name + "\"></a>" +
+                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\'book?book_id=" + addQuote1(books[book].book_name) + "\' target=\"_blank\" title=\"" + books[book].book_name + "\">" +
+                            "<img src=\"static/img/2.jpg\" alt=\"" + books[book].book_name + "\"></a>" +
                     "</div><div class=\"bookInfo\"><p class=\"bookName\">书名：" + books[book].book_name + "</p>" +
                             "<p class=\"author\">作者：" + books[book].author + "</p><p class=\"bookType\">类别：" + books[book].genre + "</p>" +
                             "<p class=\"bookNum\">x人提供此书</p></div><div class=\"clear\"></div></div>";
@@ -97,14 +104,12 @@ function search(type, hint) {
                     }
                 },
                 error: function () {
-                    location.href = "/notfound?" + type + "=" + hint;
+                    location.href = "/notfound?hint=" + encodeURIComponent(hint) + "&type=" + type;
                 }
             });
 
             break;
     }
-    
-    return books;
 }
 
 $(function () {
@@ -115,7 +120,7 @@ $(function () {
         var type = $('input[type="radio"][name="type"]:checked').val();
 
         if (!hint) {
-            location.href = "/notfound";
+            location.href = "/notfound?hint=" + encodeURIComponent(hint) + "&type=" + type;
         }
         else {
             location.href = "/found?hint=" + encodeURIComponent(hint) + "&type=" + type;
@@ -124,8 +129,4 @@ $(function () {
         }
     });
 
-    //登录模块
-
-
-   
 });
