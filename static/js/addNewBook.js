@@ -6,7 +6,6 @@
         var genre = $("#genre").val().toString();
         var summary = $("#summary").val().toString();
         var user_id = $("#user_id").html() ? $("#user_id").html().toString() : null;
-        alert(addQuote(book_name));
         console.log(typeof (book_name));
         if (!user_id) {
             alert("你还未登录！请点击右上角登录按钮，登陆后登记书本信息");
