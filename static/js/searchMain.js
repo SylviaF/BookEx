@@ -26,6 +26,4 @@ $(function () {
             $("#radio0").attr("checked", true);
             break;
     }
-
-
 });
