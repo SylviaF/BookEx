@@ -36,10 +36,8 @@ class BorrowBookHandler(tornado.web.RequestHandler):
 			sql_search = 'SELECT * FROM BorrowBook WHERE isbn = \'' + isbn + '\''
 			row_borrowbooks = self.application.db.query(sql_search)
 
-			print "$$$$$$$$$$$$$$$$$ ", isbn
 			result = []
 			for row in row_borrowbooks:
-				print "user############### ", str(row['owner_id'])
 				sql_searchbook = 'SELECT * FROM Users WHERE user_id = \'' + str(row['owner_id']) + '\''
 				userlist = self.application.db.query(sql_searchbook)
 				for us in userlist:

@@ -13,7 +13,7 @@
         <span id="hint">BookEx欢迎你</span>
         <span id="login_info">
             {% if user %}
-                <a href="homepage" id="user_id">{{ escape(user) }}</a> | <a href="api/v1/users/logout">退出</a>
+                <a href="homepage?user_id={{ escape(user) }}" id="user_id">{{ escape(user) }}</a> | <a href="api/v1/users/logout">退出</a>
             {% else %}
                 <a href="api/v1/users/login">登录</a> | <a href="api/v1/users/register">注册</a>
             {% end %}

@@ -9,7 +9,7 @@ from handlers.index import MainHandler
 from handlers.book import BookHandler, AddBookHandler, DeleteBookHandler
 from handlers.save import SaveBookHandler
 from handlers.borrow import BorrowBookHandler
-from handlers.comment import CommentHandler
+from handlers.comment import CommentHandler, DeleteCommentHandler
 
 urls = [
     (r'/', MainHandler),
@@ -28,4 +28,5 @@ urls = [
     (r'/api/v1/savebook', SaveBookHandler),
     (r'/api/v1/borrowbook', BorrowBookHandler),
     (r'/api/v1/comment', CommentHandler),
+    (r'/api/v1/comment/delete', DeleteCommentHandler),
 ]

@@ -5,6 +5,12 @@
 }
 img {
     height:250px;
+    float:left;
+}
+#photo {
+    height:200px;
+    width: 200px;
+    border-radius:100px;
     float: left;
 }
 .personInfo 

@@ -12,7 +12,7 @@
         <span id="hint">BookEx欢迎你</span>
         <span id="login_info">
             {% if user %}
-                <a id="user_id" href="homepage">{{ escape(user) }}</a> | <a href="api/v1/users/logout">退出</a>
+                <a id="user_id" href="homepage?user_id={{ escape(user) }}">{{ escape(user) }}</a> | <a href="api/v1/users/logout">退出</a>
             {% else %}
                 <a href="api/v1/users/login">登录</a> | <a href="api/v1/users/register">注册</a>
             {% end %}
@@ -34,6 +34,7 @@
     </nav>
     <menu>
         <ul>
+            <li>所有书籍</li>
             <li>教材教辅</li>
             <li>少儿</li>
             <li>文学艺术</li>

@@ -61,22 +61,24 @@ class AddBookHandler(tornado.web.RequestHandler):
 		# 1. Insert into the Book Table
 		tup = (isbn, book_name, author, image_url, genre, summary)
 		print "我操为什么乱码啊 - ", tup
+		encoding_set = 'SET NAMES utf8'
 		sql_sent = 'INSERT INTO Book VALUES' + str(tup)
-
+		self.application.db.execute(encoding_set)
 		self.application.db.execute(sql_sent)
 
 		# 2. Insert into the BorrowBook Table
 		tup2 = (user_id, isbn, 'available', 0)
 		sql_sent2 = 'INSERT INTO BorrowBook VALUES' + str(tup2)
 
+		self.application.db.execute(encoding_set)
 		self.application.db.execute(sql_sent2)
-
 		self.write(json.dumps(tup))
 
 class DeleteBookHandler(tornado.web.RequestHandler):
-	def delete(self):
+	def post(self):
+		print "调用API"
 		isbn = self.get_argument('isbn').encode('utf8')
-		book_name = self.get_argument('book_name').encode('utf8')
+		# book_name = self.get_argument('book_name').encode('utf8')
 		user_id = self.get_argument('user_id').encode('utf8')
 
 		# [WARNING] - Should first check out whether the book is owned by the owner
@@ -94,4 +96,5 @@ class DeleteBookHandler(tornado.web.RequestHandler):
 		sql_sent3 = 'DELETE FROM SaveBook WHERE isbn = \'' + isbn + '\' AND user_id = \'' + user_id + '\''
 		self.application.db.execute(sql_sent3)
 
+		print "Delete the comment successfully"
 		self.write(json.dumps(book))

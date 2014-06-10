@@ -17,6 +17,7 @@ $(function () {
         $("#punish").click(function () {
             location.href = "/addbook";
         });
+        // owner_list
         $.ajax({
             dataType: "json",
             url: "api/v1/books",
@@ -28,9 +29,9 @@ $(function () {
                                         "\"><img src=\"" + data[0].image_url + "\" alt=\"" + data[0].book_name +
                                     "\"></a></div>";
 
-                var $bookItem = "<p class=\"bookName\">书名：" + data[0].book_name + "</p>" +
+                var $bookItem = "<p class=\"bookName\">书名：<span id=\"bookName\">" + data[0].book_name + "</span></p>" +
                     "<p class=\"author\">作者：" + data[0].author + "</p><p class=\"bookType\">类别：" + data[0].genre + "</p>" +
-                    "<p class=\"isbn\">ISBN：<span id=\"isbn\">"+data[0].isbn+"</span></p>";
+                    "<p class=\"isbn\">ISBN：<span id=\"isbn\">" + data[0].isbn + "</span></p>";
 
                 $("#book").prepend($bookCover);
                 $("#bookInfo").prepend($bookItem);
@@ -52,46 +53,98 @@ $(function () {
                         console.log(data);
 
                         var i = 0;
-                        
+
                         if (data.length === 0) {
                             $("#comment_content").hide();
                         }
                         else {
-                            
+
                             $("#comment_content").show();
                             while (data[i]) {
                                 var content;
-                         
+
                                 if (user == data[i].user_id) {
-                                    content = "<p><button class=\"delete greenBtn\" id=\"deletebook\">删除</button>" + data[i].content + "</p>" +
-                                    "<p class=\"user_name\">By: <span class=\"users\">"+ data[i].user_id + "</span></p>";
+                                    content = "<p><button class=\"delete greenBtn\" id=\"deleteComment\">删除</button>" + data[i].content + "</p>" +
+                                    "<p class=\"user_name\">By: <span class=\"users\">" + data[i].user_id + "</span></p>";
                                 }
                                 else {
                                     content = "<p>" + data[i].content + "</p>" +
-                                    "<p class=\"user_name\">By: <span class=\"users\">"+ data[i].user_id + "</span></p>";
+                                    "<p class=\"user_name\">By: <span class=\"users\">" + data[i].user_id + "</span></p>";
                                 }
 
                                 $("#comment_content").append(content);
                                 i++;
                             }
                         }
-                       
+
                     }
                 }).done(function () {
-                    $("#deletebook").click(function () {
-                        var isbn = $("#isbn").val().toString();
-                        var user_id = $("#user_id").val().toString();
-                        console.log(isbn + user_id);
+                    $.ajax({
+                        dataType: "json",
+                        data: { "isbn": book_id },
+                        url: "api/v1/borrowbook",
+                        success: function (data) {
+                            console.log(data);
+
+                            var i = 0;
+
+                            if (data.length === 0) {
+                                $("#owners_show").hide();
+                            }
+                            else {
+
+                                $("#owners_show").show();
+                                while (data[i]) {
+                                    var div = "<tr><th><a href=\"/homepage?user_id=" + data[i].user_name + "\">" + (i + 1) + "</a></th><td><a href=\"/homepage?user_id=" + data[i].user_name + "\">" + data[i].user_name + "</a></td></tr>";
+
+                                    $("#owners").append(div);
+
+                                    if (data[i].user_name == user) {
+                                        $("#bookInfo").append("<button id=\"deleteBook\">删除此书</button>");
+                                    }
+                                    else {
+
+                                    }
+                                    i++;
+                                }
+                            }
+
+                        }
+                    }).done(function () {
+                        $("#deleteBook").click(function () {
+                            $.ajax({
+                                type: "POST",
+                                dataType: "json",
+                                url: "/api/v1/books/delete",
+                                data: { "isbn": book_id, "user_id": user },
+                                success: function (data) {
+                                    alert("删除书籍成功！");
+                                    location.href = "/";
+                                },
+                                error: function (data) {
+                                    alert("删除书籍失败！");
+                                }
+                            });
+                        });
+
+                    });
+
+                    $("#deleteComment").click(function () {
 
                         $.ajax({
-                            type: "DELETE",
+                            type: "post",
                             dataType: "json",
-                            url: "/api/v1/comment",
-                            data: { "isbn": isbn, "user_id": user_id },
+                            url: "/api/v1/comment/delete",
+                            data: { 'isbn': book_id, 'user_id': user },
                             success: function (data) {
                                 alert("删除评论成功！");
+                                location.reload();
+                            },
+                            error: function (data) {
+                                alert("删除评论失败！");
                             }
                         });
+
                     });
                 });
             }

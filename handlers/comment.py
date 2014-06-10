@@ -25,14 +25,19 @@ class CommentHandler(tornado.web.RequestHandler):
 
 		self.write(json.dumps(post_result))
 
-	def delete(self):
+class DeleteCommentHandler(tornado.web.RequestHandler):
+	def post(self):
 		isbn = self.get_argument('isbn').encode('utf-8')
 		user_id = self.get_argument('user_id').encode('utf-8')
+
+		print "#####isbn - ", isbn
+		print "#####user_id - ", user_id
 
 		select_comment = 'SELECT * FROM Comment WHERE isbn = \'' + isbn + '\' AND user_id = \'' + user_id + '\''
 		result = self.application.db.query(select_comment)
 
 		delete_comment = 'DELETE FROM Comment WHERE isbn = \'' + isbn + '\' AND user_id = \'' + user_id + '\''
+		print "API called!!!!!!!!!!!!!!!", delete_comment
 		self.application.db.execute(delete_comment)
 
 		self.write(json.dumps(result))

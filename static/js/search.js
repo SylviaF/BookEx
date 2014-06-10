@@ -14,27 +14,26 @@ function addQuote1(str) {
 }
 
 function search(type, hint) {
-    var books = [];
+
     switch (type) {
         case "book_name":
             $.ajax({
                 dataType: "json",
                 url: "api/v1/books",
-                data: { book_name: addQuote(hint) },
+                data: { book_name: hint },
                 success: function (data) {
-                    books = data;
                     console.log(data);
-                    if (books.length === 0) {
+                    if (data.length === 0) {
                         location.href = "/notfound?hint=" + encodeURIComponent(hint) + "&type=" + type;
                     }
                     else {
                         $("#result").html("");
-                        for (book in books) {
+                        for (book in data) {
 
-                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\'book?book_id=" + addQuote1(books[book].book_name) + "\' target=\"_blank\" title=\"" + books[book].book_name + "\">" +
-                            "<img src=\"static/img/2.jpg\" alt=\"" + books[book].book_name + "\"></a>" +
-                    "</div><div class=\"bookInfo\"><p class=\"bookName\">书名：" + books[book].book_name + "</p>" +
-                            "<p class=\"author\">作者：" + books[book].author + "</p><p class=\"bookType\">类别：" + books[book].genre + "</p>" +
+                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\'book?book_id=" + data[book].book_name + "\' target=\"_blank\" title=\"" + data[book].book_name + "\">" +
+                            "<img src=\""+ data[book].image_url +"\" alt=\"" + data[book].book_name + "\"></a>" +
+                    "</div><div class=\"bookInfo\"><p class=\"bookName\">书名：" + data[book].book_name + "</p>" +
+                            "<p class=\"author\">作者：" + data[book].author + "</p><p class=\"bookType\">类别：" + data[book].genre + "</p>" +
                             "<p class=\"bookNum\">x人提供此书</p></div><div class=\"clear\"></div></div>";
 
                             $("#result").append(div);
@@ -51,21 +50,20 @@ function search(type, hint) {
             $.ajax({
                 dataType: "json",
                 url: "api/v1/books",
-                data: { author: addQuote(hint) },
+                data: { author: hint },
                 success: function (data) {
-                    books = data;
                     console.log(data);
-                    if (books.length === 0) {
+                    if (data.length === 0) {
                         location.href = "/notfound?hint=" + encodeURIComponent(hint) + "&type=" + type;
                     }
                     else {
                         $("#result").html("");
-                        for (book in books) {
+                        for (book in data) {
 
-                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\'book?book_id=" + addQuote1(books[book].book_name) + "\' target=\"_blank\" title=\"" + books[book].book_name + "\">" +
-                            "<img src=\"static/img/2.jpg\" alt=\"" + books[book].book_name + "\"></a>" +
-                    "</div><div class=\"bookInfo\"><p class=\"bookName\">书名：" + books[book].book_name + "</p>" +
-                            "<p class=\"author\">作者：" + books[book].author + "</p><p class=\"bookType\">类别：" + books[book].genre + "</p>" +
+                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\'book?book_id=" + data[book].book_name + "\' target=\"_blank\" title=\"" + data[book].book_name + "\">" +
+                            "<img src=\""+ data[book].image_url +"\" alt=\"" + data[book].book_name + "\"></a>" +
+                    "</div><div class=\"bookInfo\"><p class=\"bookName\">书名：" + data[book].book_name + "</p>" +
+                            "<p class=\"author\">作者：" + data[book].author + "</p><p class=\"bookType\">类别：" + data[book].genre + "</p>" +
                             "<p class=\"bookNum\">x人提供此书</p></div><div class=\"clear\"></div></div>";
 
                             $("#result").append(div);
@@ -82,21 +80,20 @@ function search(type, hint) {
             $.ajax({
                 dataType: "json",
                 url: "api/v1/books",
-                data: { genre: addQuote(hint) },
+                data: { genre: hint },
                 success: function (data) {
-                    books = data;
-                    console.log(books);
-                    if (books.length === 0) {
+                    console.log(data);
+                    if (data.length === 0) {
                         location.href = "/notfound?hint=" + encodeURIComponent(hint) + "&type=" + type;
                     }
                     else {
                         $("#result").html("");
-                        for (book in books) {
+                        for (book in data) {
 
-                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\'book?book_id=" + addQuote1(books[book].book_name) + "\' target=\"_blank\" title=\"" + books[book].book_name + "\">" +
-                            "<img src=\"static/img/2.jpg\" alt=\"" + books[book].book_name + "\"></a>" +
-                    "</div><div class=\"bookInfo\"><p class=\"bookName\">书名：" + books[book].book_name + "</p>" +
-                            "<p class=\"author\">作者：" + books[book].author + "</p><p class=\"bookType\">类别：" + books[book].genre + "</p>" +
+                            var div = "<div class=\"book_container\"><div class=\"cover\"><a href=\'book?book_id=" + data[book].book_name + "\' target=\"_blank\" title=\"" + data[book].book_name + "\">" +
+                            "<img src=\""+ data[book].image_url +"\" alt=\"" + data[book].book_name + "\"></a>" +
+                    "</div><div class=\"bookInfo\"><p class=\"bookName\">书名：" + data[book].book_name + "</p>" +
+                            "<p class=\"author\">作者：" + data[book].author + "</p><p class=\"bookType\">类别：" + data[book].genre + "</p>" +
                             "<p class=\"bookNum\">x人提供此书</p></div><div class=\"clear\"></div></div>";
 
                             $("#result").append(div);
@@ -113,6 +110,9 @@ function search(type, hint) {
 }
 
 $(function () {
+    $("#logo").click(function () {
+        location.href = "/";
+    });
     // 搜索按钮被按下时
     $("#search_btn").click(function () {
 

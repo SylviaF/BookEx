@@ -85,7 +85,7 @@ menu {
 
     menu li {
         float: left;
-        width: 150px;
+        width: 131.25px;
         text-align: center;
         line-height: 40px;
         color: #614e3c;
@@ -146,4 +146,16 @@ article .info {
     display: inline-block;
     cursor: pointer;
     margin-right:10px;
+}
+.introduction
+{
+	width:74%;
+	margin-left:13%;
+	margin-right:13%;
+	font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"ËÎÌו";
+}
+.headline
+{
+	color: #825d5b;
+	font-weight: bold;
 }

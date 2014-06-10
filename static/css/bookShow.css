@@ -42,21 +42,8 @@ button
 	font:15px "Microsoft YaHei",Arial,Helvetica,sans-serif,"ËÎÌו";
 	padding:8px;
 }
-.introduction
-{
-	width:74%;
-	margin-left:13%;
-	margin-right:13%;
-	font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"ËÎÌו";
-}
-.headline
-{
-	color: #825d5b;
-	font-weight: bold;
-}
 hr
 {
-	size:1;
 	color: #e5ebe4;
 }
 textarea
@@ -72,4 +59,17 @@ textarea
 .user_name {
     text-align:right;
     border-bottom:1px dashed #825d5b;
+}
+#owners th {
+    width: 100px;
+}
+#owners a {
+    color:black;
+}
+#owners{
+    width:100%;
+    cursor:pointer;
+}
+#owners tr::after {
+    content:'>>';
 }

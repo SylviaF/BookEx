@@ -12,7 +12,7 @@
         <span id="hint">BookEx欢迎你</span>
         <span id="login_info">
             {% if user %}
-                <a href="homepage" id="user_id">{{ escape(user) }}</a> | <a href="api/v1/users/logout">退出</a>
+                <a href="homepage?user_id={{ escape(user) }}" id="user_id">{{ escape(user) }}</a> | <a href="api/v1/users/logout">退出</a>
             {% else %}
                 <a href="api/v1/users/login">登录</a> | <a href="api/v1/users/register">注册</a>
             {% end %}
@@ -21,7 +21,7 @@
     </nav>
     <div class ="bigBody">
         <div class ="firstPart">
-		    <img src="{{static_url("img/1.jpg")}}">
+		    <img id="photo" src="{{static_url("img/1.jpg")}}">
             
             <div class="personInfo">
                 <p id="userName"></p>
@@ -30,16 +30,18 @@
             </div>
             <div class="clear"></div>
         </div>
-        <hr />
-        <div class ="secondPart">
-            <span class="myBook">我的书</span>
+        <br />
+        <div class ="introduction">
+            <h3 class="headline">我的书</h3>
+            <hr />
             <ul id="myBookDetail">
                 
             </ul>
         </div>
-        <hr />
-         <div class ="thirdPart">
-            <span class="myFavBook">我的收藏</span>
+        <br />
+         <div class ="introduction">
+            <h3 class="headline">我的收藏</h3>
+             <hr />
             <ul id="myDetail">
                 
             </ul>
